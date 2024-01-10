@@ -7,7 +7,7 @@ import csv
 import os
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "8BYkEfBA6O6donzWlSihBXox7C0sKR6b"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 Bootstrap(app)
 
 
@@ -77,7 +77,7 @@ def add_cafe():
 @app.route("/cafes")
 def cafes():
     print(os.getcwd())
-    with open("/cafe-data.csv", newline="", encoding="UTF-8") as csv_file:
+    with open("cafe-data.csv", newline="", encoding="UTF-8") as csv_file:
         csv_data = csv.reader(csv_file, delimiter=",")
         list_of_rows = []
         for row in csv_data:
